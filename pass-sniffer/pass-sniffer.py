@@ -9,6 +9,8 @@ def get_login_pass(body):
     user = None
     passwd = None
 
+    # TO DO
+    # populate the list with data
     userfields = []
     passfields = []
 
@@ -28,9 +30,11 @@ def pkt_parser(packet):
     if packet.haslayer(TCP) and packet.haslayer(Raw) and packet.haslayer(IP):
         body = str(packet[TCP].payload)
         user_pass = get_login_pass(body)
-        if user_pass != None:
-            print()
-
+        if user_pass is not None:
+            print(parse.unquote(user_pass[0]))
+            print(parse.unquote(user_pass[1]))
+        else:
+            pass
 
 
 try:
